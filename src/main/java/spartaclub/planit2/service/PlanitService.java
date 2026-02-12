@@ -84,4 +84,12 @@ public class PlanitService {
                 planit.getName(),
                 planit.getModifiedAt());
     }
+
+    //삭제(delete)
+    @Transactional
+    public void delete(Long id) {
+        Planit planit = planitRepository.findById(id).orElseThrow(()
+                        -> new IllegalArgumentException(("일정이 없습니다.")));
+        planitRepository.delete(planit);
+    }
 }

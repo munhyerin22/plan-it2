@@ -42,4 +42,11 @@ public class PlanitController {
         return ResponseEntity.ok(planitService.update(id, request));
     }
 
+    // 삭제
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> delete(@PathVariable Long id){
+        planitService.delete(id);
+        return ResponseEntity.noContent().build();
+    }
+
 }
