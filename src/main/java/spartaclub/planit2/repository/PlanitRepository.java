@@ -6,6 +6,6 @@ import spartaclub.planit2.entity.Planit;
 import java.util.List;
 
 public interface PlanitRepository extends JpaRepository<Planit, Long> {
-    List<Planit> findAllByOrderByCreateAtDesc();
-    List<Planit> findAllByNameOrderByCreateAtDesc(String name);
+    List<Planit> findAllByOrderByModifiedAtDesc();
+    List<Planit> findAllByNameOrderByModifiedAtDesc(String name);
 }

@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.*;
 import spartaclub.planit2.dto.GetOneResponsePlanitDto;
 import spartaclub.planit2.dto.ResponsePlanitDto;
 import spartaclub.planit2.dto.RequestPlanitDto;
+import spartaclub.planit2.dto.UpdateResponsePlanitDto;
 import spartaclub.planit2.service.PlanitService;
 
 import java.util.List;
@@ -33,6 +34,12 @@ public class PlanitController {
     @GetMapping
     public ResponseEntity<List<GetOneResponsePlanitDto>> getAll(@RequestParam(required = false) String name) {
         return ResponseEntity.ok(planitService.getAll(name));
+    }
+
+    // 수정
+    @PutMapping("/{id}")
+    public ResponseEntity<UpdateResponsePlanitDto> update(@PathVariable Long id, @RequestBody RequestPlanitDto request) {
+        return ResponseEntity.ok(planitService.update(id, request));
     }
 
 }

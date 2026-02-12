@@ -4,16 +4,12 @@ import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.annotation.LastModifiedDate;
-
-import java.time.LocalDateTime;
 
 @Getter
 @Entity
 @Table(name = "planit2")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class Planit {
+public class Planit extends Base {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -28,15 +24,17 @@ public class Planit {
     @Column(nullable = false)
     private String name; // 작성자 명
 
-    @CreatedDate
-    @Column(updatable = false)
-    private LocalDateTime createAt; // 작성일
 
-    public Planit(String title, String content, String name, LocalDateTime createAt){
+    public Planit(String title, String content, String name){
         this.title = title;
         this.content = content;
         this.name = name;
-        this.createAt = createAt;
+    }
+
+    // 수정
+    public void update(String title, String name) {
+        this.title = title;
+        this.name = name;
     }
 
 }
