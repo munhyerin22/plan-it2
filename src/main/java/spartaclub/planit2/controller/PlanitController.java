@@ -3,13 +3,13 @@ package spartaclub.planit2.controller;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import spartaclub.planit2.dto.GetOneResponsePlanitDto;
 import spartaclub.planit2.dto.ResponsePlanitDto;
 import spartaclub.planit2.dto.RequestPlanitDto;
 import spartaclub.planit2.service.PlanitService;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/planit2")
@@ -21,6 +21,18 @@ public class PlanitController {
     @PostMapping
     public ResponseEntity<ResponsePlanitDto> create (@RequestBody RequestPlanitDto request){
         return ResponseEntity.status(HttpStatus.CREATED).body(planitService.create(request));
+    }
+
+    // 단건 조회
+    @GetMapping("/{id}")
+    public ResponseEntity<GetOneResponsePlanitDto> getOne (@PathVariable Long id) {
+        return ResponseEntity.ok(planitService.getOne(id));
+    }
+
+    // 전체 조회
+    @GetMapping
+    public ResponseEntity<List<GetOneResponsePlanitDto>> getAll(@RequestParam(required = false) String name) {
+        return ResponseEntity.ok(planitService.getAll(name));
     }
 
 }
