@@ -1,7 +1,7 @@
-package spartaclub.planit2.repository;
+package spartaclub.planit2.schedule.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import spartaclub.planit2.entity.Planit;
+import spartaclub.planit2.schedule.entity.Planit;
 
 import java.util.List;
 

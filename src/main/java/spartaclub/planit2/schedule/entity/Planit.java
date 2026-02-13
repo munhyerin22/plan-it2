@@ -1,9 +1,10 @@
-package spartaclub.planit2.entity;
+package spartaclub.planit2.schedule.entity;
 
 import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import spartaclub.planit2.User.entity.User;
 
 @Getter
 @Entity
@@ -21,20 +22,20 @@ public class Planit extends Base {
     @Column(nullable = false)
     private String content; // 일정 내용
 
-    @Column(nullable = false)
-    private String name; // 작성자 명
+    @ManyToOne(fetch = FetchType.LAZY)
+//    @JoinColumn(name = "userId")
+    private User user; // 작성자 명
 
 
-    public Planit(String title, String content, String name){
+    public Planit(String title, String content, User user){
         this.title = title;
         this.content = content;
-        this.name = name;
+        this.user = user;
     }
 
     // 수정
-    public void update(String title, String name) {
+    public void update(String title) {
         this.title = title;
-        this.name = name;
     }
 
 }

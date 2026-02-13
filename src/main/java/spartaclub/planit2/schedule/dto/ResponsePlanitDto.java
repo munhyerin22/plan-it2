@@ -1,4 +1,4 @@
-package spartaclub.planit2.dto;
+package spartaclub.planit2.schedule.dto;
 
 import java.time.LocalDateTime;
 

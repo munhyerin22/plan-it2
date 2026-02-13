@@ -1,14 +1,14 @@
-package spartaclub.planit2.controller;
+package spartaclub.planit2.schedule.controller;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import spartaclub.planit2.dto.GetOneResponsePlanitDto;
-import spartaclub.planit2.dto.ResponsePlanitDto;
-import spartaclub.planit2.dto.RequestPlanitDto;
-import spartaclub.planit2.dto.UpdateResponsePlanitDto;
-import spartaclub.planit2.service.PlanitService;
+import spartaclub.planit2.schedule.dto.GetOneResponsePlanitDto;
+import spartaclub.planit2.schedule.dto.RequestPlanitDto;
+import spartaclub.planit2.schedule.dto.ResponsePlanitDto;
+import spartaclub.planit2.schedule.dto.UpdateResponsePlanitDto;
+import spartaclub.planit2.schedule.service.PlanitService;
 
 import java.util.List;
 

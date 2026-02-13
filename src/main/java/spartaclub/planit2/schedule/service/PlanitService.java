@@ -1,35 +1,43 @@
-package spartaclub.planit2.service;
+package spartaclub.planit2.schedule.service;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import spartaclub.planit2.dto.GetOneResponsePlanitDto;
-import spartaclub.planit2.dto.ResponsePlanitDto;
-import spartaclub.planit2.dto.RequestPlanitDto;
-import spartaclub.planit2.dto.UpdateResponsePlanitDto;
-import spartaclub.planit2.entity.Planit;
-import spartaclub.planit2.repository.PlanitRepository;
+import spartaclub.planit2.User.entity.User;
+import spartaclub.planit2.User.repository.UserRepository;
+import spartaclub.planit2.schedule.dto.GetOneResponsePlanitDto;
+import spartaclub.planit2.schedule.dto.RequestPlanitDto;
+import spartaclub.planit2.schedule.dto.ResponsePlanitDto;
+import spartaclub.planit2.schedule.dto.UpdateResponsePlanitDto;
+import spartaclub.planit2.schedule.entity.Planit;
+import spartaclub.planit2.schedule.repository.PlanitRepository;
 
 import java.util.List;
 
 @Service
 @RequiredArgsConstructor
 public class PlanitService {
-    private final PlanitRepository planitRepository;
+    private final PlanitRepository planitRepository; //빈
+    private final UserRepository userRepository;
+    // 자동으로 생성..
 
     // 생성
     @Transactional
     public ResponsePlanitDto create(RequestPlanitDto request) {
+        User user = userRepository.findByUsername(request.name()).orElseThrow(
+                () -> new IllegalArgumentException("user가 없습니다.")
+        ); // 작성자명
+
         Planit planit = new Planit(
                 request.title(),
                 request.content(),
-                request.name());
+                user); // user
         Planit saved = planitRepository.save(planit);
         return new ResponsePlanitDto(
                 saved.getId(),
                 saved.getTitle(),
                 saved.getContent(),
-                saved.getName(),
+                saved.getUser().getUsername(),
                 saved.getCreatedAt(),
                 saved.getModifiedAt());
     }
@@ -44,7 +52,7 @@ public class PlanitService {
                 planit.getId(),
                 planit.getTitle(),
                 planit.getContent(),
-                planit.getName(),
+                planit.getUser().getUsername(),
                 planit.getCreatedAt(),
                 planit.getModifiedAt());
     }
@@ -61,7 +69,7 @@ public class PlanitService {
                         planit.getId(),
                         planit.getTitle(),
                         planit.getContent(),
-                        planit.getName(),
+                        planit.getUser().getUsername(), // 이렇게 바꿔보고 저렇게 바꿔보다가,,,
                         planit.getCreatedAt(),
                         planit.getModifiedAt()
                 ))
@@ -75,13 +83,12 @@ public class PlanitService {
                 -> new IllegalArgumentException(("일정이 없습니다."))
         ); // 수정 시 id요청
         planit.update( // 수정시 입력할 값+수정일(시간)
-                request.title(),
-                request.name());
+                request.title());
         return new UpdateResponsePlanitDto(
                 planit.getId(),
                 planit.getTitle(),
                 planit.getContent(),
-                planit.getName(),
+                planit.getUser().getUsername(),
                 planit.getModifiedAt());
     }
 
