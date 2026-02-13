@@ -7,5 +7,5 @@ import java.util.List;
 
 public interface PlanitRepository extends JpaRepository<Planit, Long> {
     List<Planit> findAllByOrderByModifiedAtDesc();
-    List<Planit> findAllByNameOrderByModifiedAtDesc(String name);
+    List<Planit> findAllByUserUsername(String name);
 }

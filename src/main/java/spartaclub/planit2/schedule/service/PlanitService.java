@@ -61,7 +61,7 @@ public class PlanitService {
     @Transactional(readOnly = true)
     public List<GetOneResponsePlanitDto> getAll(String name) {
         List<Planit> planits = (name != null)
-                ? planitRepository.findAllByNameOrderByModifiedAtDesc(name)
+                ? planitRepository.findAllByUserUsername(name)
                 : planitRepository.findAllByOrderByModifiedAtDesc();
 
         return planits.stream()
@@ -69,7 +69,7 @@ public class PlanitService {
                         planit.getId(),
                         planit.getTitle(),
                         planit.getContent(),
-                        planit.getUser().getUsername(), // 이렇게 바꿔보고 저렇게 바꿔보다가,,,
+                        planit.getUser().getUsername(),
                         planit.getCreatedAt(),
                         planit.getModifiedAt()
                 ))

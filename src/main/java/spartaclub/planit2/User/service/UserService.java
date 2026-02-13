@@ -89,7 +89,7 @@ public class UserService {
     @Transactional(readOnly = true)
     public List<GetOneResponseUserDto> getAll(String name) {
         List<User> users = (name != null)
-                ? userRepository.findAllByNameOrderByModifiedAtDesc(name)
+                ? userRepository.findAllByUsernameOrderByModifiedAtDesc(name)
                 : userRepository.findAllByOrderByModifiedAtDesc();
 
         return users.stream()

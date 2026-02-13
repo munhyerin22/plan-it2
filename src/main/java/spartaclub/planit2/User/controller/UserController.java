@@ -30,7 +30,7 @@ public class UserController {
     }
 
     // 로그인
-    @PostMapping("/signin")// 조회 get은 바디를 쓸 수 없기 때문에 Post로 한다.
+    @PostMapping("/login")// 조회 get은 바디를 쓸 수 없기 때문에 Post로 한다.
     public ResponseEntity<String> signIn(@RequestBody RequestSignInDto signInDto, HttpSession session){
         userService.signIn(signInDto, session);
         return ResponseEntity.ok("로그인 성공");
