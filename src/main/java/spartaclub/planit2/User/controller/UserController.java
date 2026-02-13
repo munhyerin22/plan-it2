@@ -29,14 +29,13 @@ public class UserController {
         return ResponseEntity.status(HttpStatus.CREATED).body(userService.register(request));
     }
 
-    // 로그인 이메일이랑 비밀번호아아아아ㅏ 네 강의 들었습니다! 세션과 쿠키
-    // 넹 세션으로 리턴
+    // 로그인
     @PostMapping("/signin")// 조회 get은 바디를 쓸 수 없기 때문에 Post로 한다.
     public ResponseEntity<String> signIn(@RequestBody RequestSignInDto signInDto, HttpSession session){
         userService.signIn(signInDto, session);
         return ResponseEntity.ok("로그인 성공");
     }
-    //세션을 활용해서 getA~ 사용하기. 학습
+    //세션을 활용해서 getA~ 사용하기. 학습하기
 
     // 타입과 변수명 구분 @RequiredArgsConstructor를 선언함으로 21번줄
 

@@ -64,7 +64,7 @@ public class UserService {
             throw new RuntimeException("비밀번호가 틀렸습니다.");
         }
         // 세션에 등록
-        session.setAttribute("LogInUser", new LoginUser(
+        session.setAttribute("LogInUser", new LoginResponseUserDto(
                 signIn.getId(), signIn.getUsername(), signIn.getEmail()));
 
     }

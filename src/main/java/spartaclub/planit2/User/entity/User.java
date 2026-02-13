@@ -16,15 +16,15 @@ public class User extends Base {
     private Long id; // PK용 id
 
     @Column(length =10, nullable = false)
-    private String username; // 일정 이름
+    private String username; // user 이름
 
     @Column(unique = true,nullable = false)
-    private String email; // 일정 내용
+    private String email; // 로그인용 email
 
     @Column(nullable = false)
-    private String password;
+    private String password; // 로그인용 비밀번호
 
-    public User(String username, String email, String password){
+    public User(String username, String email, String password){ //생성자
         this.username = username;
         this.email = email;
         this.password = password;
@@ -33,6 +33,6 @@ public class User extends Base {
     // 수정
     public void update(String username) {
         this.username = username;
-    }
+    } // user 이름만 수정?..
 
 }
