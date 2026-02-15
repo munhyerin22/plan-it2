@@ -12,7 +12,7 @@ import spartaclub.planit2.User.service.UserService;
 import java.util.List;
 
 @RestController
-@RequestMapping("/planit2")
+@RequestMapping("/users")
 @RequiredArgsConstructor
 public class UserController {
     private final UserService userService;
